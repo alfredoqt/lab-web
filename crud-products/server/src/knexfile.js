@@ -1,7 +1,8 @@
 const dotenv = require('dotenv');
 const path = require('path');
 
-dotenv.config();
+// Necessary hack, it was accessing another env from my pc
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 module.exports = {
   development: {
@@ -9,7 +10,7 @@ module.exports = {
     connection: {
       host: process.env.DB_DEVELOPMENT_HOST || 'localhost',
       port: process.env.DB_DEVELOPMENT_PORT || '3306',
-      database: process.env.DB_DEVELOPMENT_NAME || 'my_database',
+      database: process.env.DB_DEVELOPMENT_NAME || 'my_inventory',
       user:  process.env.DB_DEVELOPMENT_USER || 'root',
       password: process.env.DB_DEVELOPMENT_PASSWORD || '',
     },
