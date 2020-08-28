@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App.react';
 import * as serviceWorker from './serviceWorker';
 
 // Activate concurrent mode
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.unstable_createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
