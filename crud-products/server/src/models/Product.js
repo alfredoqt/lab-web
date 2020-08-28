@@ -15,7 +15,14 @@ function insertOne(product) {
     .insert(product);
 }
 
+function getOne(id) {
+  return knex('products')
+    .where({ id })
+    .select('*');
+}
+
 module.exports = {
   factory,
   insertOne,
+  getOne,
 };

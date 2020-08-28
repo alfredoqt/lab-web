@@ -13,9 +13,9 @@ async function postOne(request, response) {
   );
 
   // Now get the inserted product and give it back to the user
+  const inserted = await Product.getOne(insert[0]);
 
-
-  response.send('ok');
+  response.send({data: inserted[0]});
 }
 
 module.exports = {

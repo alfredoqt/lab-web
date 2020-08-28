@@ -11,7 +11,7 @@ module.exports = {
       port: process.env.DB_DEVELOPMENT_PORT || '3306',
       database: process.env.DB_DEVELOPMENT_NAME || 'my_inventory',
       user:  process.env.DB_DEVELOPMENT_USER || 'root',
-      password: process.env.DB_DEVELOPMENT_PASSWORD || '',
+      password: process.env.DB_DEVELOPMENT_PASSWORD || 'Lk23defg',
     },
     pool: {
       min: 2,
