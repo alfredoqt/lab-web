@@ -4,8 +4,7 @@ dotenv.config();
 
 const appConfig = {
     serverPort:  process.env.SERVER_PORT || 3000,
+    env: process.env.NODE_ENV || 'development',
 };
-
-console.log(process.env);
 
 module.exports = appConfig;
