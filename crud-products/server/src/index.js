@@ -18,3 +18,5 @@ routes.forEach(route => app.use(route.pathname, route.router));
 app.listen(appConfig.serverPort, () => {
   console.log(`App listening at http://localhost:${appConfig.serverPort}`);
 })
+
+console.log(__dirname);
