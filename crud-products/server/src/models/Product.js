@@ -21,8 +21,14 @@ function getOne(id) {
     .select('*');
 }
 
+function getAll(id) {
+  return knex('products')
+    .select('*');
+}
+
 module.exports = {
   factory,
   insertOne,
   getOne,
+  getAll,
 };

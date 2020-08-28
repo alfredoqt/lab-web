@@ -1,7 +1,8 @@
 const Product = require('../../models/Product');
 
-function getAll(request, response) {
-    response.send({ data: [{ id: 1 }] });
+async function getAll(request, response) {
+  const products = await Product.getAll();
+  response.send({ data: products });
 }
 
 async function postOne(request, response) {
