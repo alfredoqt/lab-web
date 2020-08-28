@@ -22,14 +22,29 @@ async function postOne(request, response) {
 async function getOne(request, response) {
   const { id } = request.params;
 
-  // Now get the inserted product and give it back to the user
-  const inserted = await Product.getOne(id);
+  const got = await Product.getOne(id);
 
-  response.send({data: inserted[0]});
+  response.send({data: got[0]});
+}
+
+async function putOne(request, response) {
+  const { id } = request.params;
+  const { name, description, price } = request.body;
+
+  // Now get the inserted product and give it back to the user
+  await Product.updateOne(
+    id,
+    Product.factory(name, description, price),
+  );
+
+  const updated = await Product.getOne(id);
+
+  response.send({data: updated[0]});
 }
 
 module.exports = {
     getAll,
     postOne,
     getOne,
+    putOne,
 };

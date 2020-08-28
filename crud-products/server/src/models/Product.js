@@ -17,7 +17,7 @@ function insertOne(product) {
 
 function getOne(id) {
   return knex('products')
-    .where({ id })
+    .where({ id: Number.parseInt(id, 10) })
     .select('*');
 }
 
@@ -26,9 +26,16 @@ function getAll(id) {
     .select('*');
 }
 
+function updateOne(id, product) {
+  return knex('products')
+    .where({ id: Number.parseInt(id, 10) })
+    .update(product);
+}
+
 module.exports = {
   factory,
   insertOne,
   getOne,
   getAll,
+  updateOne,
 };
