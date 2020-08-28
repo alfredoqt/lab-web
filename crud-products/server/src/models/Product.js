@@ -32,10 +32,17 @@ function updateOne(id, product) {
     .update(product);
 }
 
+function deleteOne(id) {
+  return knex('products')
+    .where({ id: Number.parseInt(id, 10) })
+    .del();
+}
+
 module.exports = {
   factory,
   insertOne,
   getOne,
   getAll,
   updateOne,
+  deleteOne,
 };

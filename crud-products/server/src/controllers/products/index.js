@@ -42,9 +42,18 @@ async function putOne(request, response) {
   response.send({data: updated[0]});
 }
 
+async function deleteOne(request, response) {
+  const { id } = request.params;
+
+  await Product.deleteOne(id);
+
+  response.send({data: {id: Number.parseInt(id, 10)}});
+}
+
 module.exports = {
     getAll,
     postOne,
     getOne,
     putOne,
+    deleteOne,
 };
