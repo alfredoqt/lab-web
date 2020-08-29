@@ -6,9 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 // Activate concurrent mode
 ReactDOM.unstable_createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
 );
 
 // If you want your app to work offline and load faster, you can change

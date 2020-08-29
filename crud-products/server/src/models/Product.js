@@ -5,7 +5,7 @@ function factory(name, description, price) {
   return {
     name,
     description,
-    price,
+    price: Number.parseFloat(price),
   };
 }
 
@@ -17,7 +17,7 @@ function insertOne(product) {
 
 function getOne(id) {
   return knex('products')
-    .where({ id: Number.parseInt(id, 10) })
+    .where({ id: Number.parseFloat(id) })
     .select('*');
 }
 
@@ -28,13 +28,13 @@ function getAll(id) {
 
 function updateOne(id, product) {
   return knex('products')
-    .where({ id: Number.parseInt(id, 10) })
+    .where({ id: Number.parseFloat(id) })
     .update(product);
 }
 
 function deleteOne(id) {
   return knex('products')
-    .where({ id: Number.parseInt(id, 10) })
+    .where({ id: Number.parseFloat(id) })
     .del();
 }
 

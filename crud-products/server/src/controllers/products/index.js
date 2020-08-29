@@ -1,7 +1,15 @@
 const Product = require('../../models/Product');
 
+// Simulate a delay
+function delay(ms) {
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  })
+}
+
 async function getAll(request, response) {
   const products = await Product.getAll();
+  // await delay(5000);
   response.send({ data: products });
 }
 
