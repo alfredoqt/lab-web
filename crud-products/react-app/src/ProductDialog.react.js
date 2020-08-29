@@ -91,10 +91,10 @@ export default function ProductDialog({open, onSave, onClose, id}) {
         )}
       </DialogContent>
       <DialogActions>
-        <Button disabled={!loading} onClick={onClose} color="primary">
+        <Button disabled={loading} onClick={onClose} color="primary">
           Cancel
         </Button>
-        <Button disabled={!loading} onClick={handleSave} color="primary">
+        <Button disabled={loading} onClick={handleSave} color="primary">
           Update
         </Button>
       </DialogActions>

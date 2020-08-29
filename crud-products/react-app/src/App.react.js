@@ -55,6 +55,11 @@ export default function App() {
     setAddOpen(true);
   }
 
+  function handleClickOpenUpdate(id) {
+    setSelectedId(id);
+    setUpdateOpen(true);
+  }
+
   function handleClickCloseAdd() {
     setAddOpen(false);
   }
@@ -79,7 +84,7 @@ export default function App() {
   }
 
   function handleUpdate(id, name, description, price) {
-    setAddOpen(false);
+    setUpdateOpen(false);
     fetch(`http://localhost:4001/products/${id}`, {
       method: 'put',
       headers: {
@@ -93,8 +98,28 @@ export default function App() {
       const indexFound = products.findIndex(p => p.id === updatedId);
       if (indexFound !== -1) {
         setProducts([
-          ...products.slice(indexFound),
+          ...products.slice(0, indexFound),
           json.data,
+          ...products.slice(indexFound + 1),
+        ]);
+      }
+    });
+  }
+
+  function handleDelete(id) {
+    fetch(`http://localhost:4001/products/${id}`, {
+      method: 'delete',
+      headers: {
+        "Content-type": "application/json"
+      },
+    })
+    .then(response => response.json())
+    .then(json => {
+      const updatedId = json.data.id;
+      const indexFound = products.findIndex(p => p.id === updatedId);
+      if (indexFound !== -1) {
+        setProducts([
+          ...products.slice(0, indexFound),
           ...products.slice(indexFound + 1),
         ]);
       }
@@ -116,15 +141,25 @@ export default function App() {
         <CircularProgress />
       : (
         <div>
-          <Button className={classes.createButton} variant="outlined" color="primary" onClick={handleClickOpenAdd}>
+          <Button
+            className={classes.createButton}
+            variant="outlined"
+            color="primary"
+            onClick={handleClickOpenAdd}>
             Create product
           </Button>
           <List>
             {products.map(product => (
-              <ListItem button key={product.id}>
+              <ListItem
+                button
+                key={product.id}
+                onClick={() => handleClickOpenUpdate(product.id)}>
                 <ListItemText primary={product.name} secondary={product.description} />
                 <ListItemSecondaryAction>
-                  <IconButton edge="end" aria-label="delete">
+                  <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={() => handleDelete(product.id)}>
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
