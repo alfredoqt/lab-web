@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -10,7 +11,6 @@ const hbshelpers = require("handlebars-helpers");
 
 const appConfig = require("./configs/app");
 const router = require("./routes");
-require("./configs/passport");
 
 const sessionStore = new session.MemoryStore();
 const multihelpers = hbshelpers();
@@ -24,6 +24,13 @@ const app = express();
 
 app.engine(extNameHbs, hbs.engine);
 app.set("view engine", extNameHbs);
+app.set("views", path.join(__dirname, "./views"));
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
 
 app.use(cors());
 app.use(cookieParser());
@@ -38,14 +45,12 @@ app.use(
 );
 app.use(flash());
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
+require("./configs/passport");
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Init routes
-app.use(router));
+app.use(router);
 
 app.listen(appConfig.serverPort, () => {
   console.log(`App listening at http://localhost:${appConfig.serverPort}`);
