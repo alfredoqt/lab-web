@@ -2,7 +2,13 @@ const passport = require("passport");
 const router = require("express").Router();
 const homepageController = require("../controllers/HomepageController");
 const authController = require("../controllers/AuthController");
+const dashboardController = require("../controllers/AppDashboardController");
 const authValidator = require("../validators/AuthValidators");
+const {
+  checkIfAdmin,
+  checkIfLoggedUser,
+} = require("../middleware/RoleAccessMiddleware");
+checkIfLoggedUser;
 
 router.get("/", homepageController.index);
 
@@ -15,12 +21,18 @@ router.post(
   "/login",
   passport.authenticate("local", {
     failureRedirect: "/login-fail",
-    successRedirect: "/protected",
+    successRedirect: "/dashboard",
   })
 );
-router.get("/protected", (req, res) => {
-  res.send("Usuario logueado con éxito");
-});
+
+router.get("/dashboard", checkIfLoggedUser, dashboardController.userDashboard);
+router.get(
+  "/users",
+  checkIfLoggedUser,
+  checkIfAdmin,
+  dashboardController.adminDashboard
+);
+
 router.get("/login-fail", (req, res) => {
   res.send("El usuario no tiene una sesión válida");
 });

@@ -30,12 +30,12 @@ exports.store = (req, res) => {
     .then((user) => {
       // Login user in passport and direct it to dashboard
       // A better experience IMHO
-      console.log(user);
       req.login(user, function (err) {
         if (err) {
           console.log(err);
+          return;
         }
-        return res.redirect("/protected");
+        return res.redirect("/dashboard");
       });
       //   res.send("s");
     })

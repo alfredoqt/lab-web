@@ -1,0 +1,25 @@
+<main>
+    <div>
+        <h1>Oit there, mate {{ user.name }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each all}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{role}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</main>
