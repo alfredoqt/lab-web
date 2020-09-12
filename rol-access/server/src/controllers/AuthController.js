@@ -22,7 +22,22 @@ exports.store = (req, res) => {
   }
   UserModel.create(req.body)
     .then((data) => {
-      return res.send("Usuario creado");
+      return data[0];
+    })
+    .then((id) => {
+      return UserModel.findById(id);
+    })
+    .then((user) => {
+      // Login user in passport and direct it to dashboard
+      // A better experience IMHO
+      console.log(user);
+      req.login(user, function (err) {
+        if (err) {
+          console.log(err);
+        }
+        return res.redirect("/protected");
+      });
+      //   res.send("s");
     })
     .catch((error) => {
       console.log(error);
