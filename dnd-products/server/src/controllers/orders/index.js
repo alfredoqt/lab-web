@@ -23,12 +23,12 @@ async function putStatus(request, response) {
   const { newStatus } = request.body;
 
   // Now get the inserted product and give it back to the user
-  const changed_status_at = new Date().toISOString();
+  const changed_status_at = new Date();
   const prev = await Order.getOne(id);
   const prevStatus = prev.currentStatus;
   await Order.updateOne(id, {
     current_status: newStatus,
-    previous_status: prev,
+    previous_status: prevStatus,
     changed_status_at,
   });
 
