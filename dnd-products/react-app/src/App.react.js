@@ -151,7 +151,7 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        setOrders([json.data, ...orders]);
       });
   }
 
