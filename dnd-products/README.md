@@ -2,7 +2,9 @@
 
 ## Authors
 
-- Alfredo Quintero Tlacuilo
+- José Alejandro Muñoz Orozco A01337343
+- Alfredo Quintero Tlacuilo A01337630
+- Kai Kawasaki Ueda A01336424
 
 ## Install
 
