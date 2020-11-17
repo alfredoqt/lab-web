@@ -1,0 +1,29 @@
+<main role="main" class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>URL Shortener</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form class="form-inline">
+        <div class="input-group w-100">
+          <input id="url_input" type="text" name="description" placeholder="URL" class="form-control">
+          <div class="input-group-append">
+            <input type="button" value="Shorten" class="btn btn-primary" onclick="storeURL()">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {{#if url}}
+      <p>Long URL: <a href={{url.longUrl}} target="_blank">{{url.longUrl}}</a></p>
+      <p>Short URL: <a href={{url.shortUrl}} target="_blank">{{url.shortUrl}}</a></p>
+      <p>Redirect Count: {{url.redirectCount}}</p>
+      {{/if}}
+      <p id="url_shortened"></p>
+    </div>
+  </div>
+</main>
